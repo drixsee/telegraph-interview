@@ -1,0 +1,49 @@
+<div class="home container">
+  <header class="headline">
+    <h1 class="title">{{article.title}}</h1>
+    <h2 class="blurb">{{article.standfirst}}</h2>
+    <span class="timestamp footnote">{{article.date}}</span>
+  </header>
+  <figure class="splash">
+    <!-- TODO: Temporary error handling for images, can optionally be done on server side -->
+    <img src="{{article.image}}" onerror="this.classList.add('placeholder');" />
+  </figure>
+  <aside class="side">
+    <header class="header">
+      <h3 class="title">More Stories</h3>
+    </header>
+    {{#each posts}}
+      <figure>
+        <div class='image'>
+          <!-- TODO: Temporary error handling for images, can optionally be done on server side -->
+          <img src="{{thumbnail}}" onerror="this.classList.add('placeholder');" />
+        </div>
+        <figcaption>
+          <h4 class="title">{{title}}</h4>
+          <a class="link" href="#">Read more</a>
+        </figcaption>
+      </figure>
+    {{/each}}
+  </aside>
+  <main class="main">
+    <section class="content">{{{article.body}}}</section>
+    <section class="comments">
+      <div class="header">
+        <h4 class="title">💬 <span class="count"></span> Comments</h4>
+        <span class="knobs">Sort: <span class="knob comment-sort-likes">Likes</span> | <span class="knob comment-sort-time">Newest</span>
+      </div>
+      <div class="body"></div>
+    </section>
+  </main>
+</div>
+
+<script class="comment-template"  type="text/html">
+  <article>
+    <div class="header">
+      <div class="title">\{{name}}</div>
+      <div class="timestamp footnote">\{{date}}</div>
+      <div class="footnote">\{{likes}} Likes</div>
+    </div>
+    <p>\{{body}}</p>
+  </article>
+</script>
